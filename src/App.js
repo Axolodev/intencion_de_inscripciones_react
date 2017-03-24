@@ -1,21 +1,45 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
 import './App.css';
 
+import ListaSemestres from "./student/ListaSemestres";
+import VistaDirector from "./director/VistaDirector";
+
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            semestres: [],
+            materiasSeleccionadas: [],
+        };
+    }
+
+    contadorUnidades() {
+        return this.state.materiasSeleccionadas.reduce(function (acc, sem) {
+            return acc + sem.unidades;
+        }, 0);
+    }
+
+    render() {
+        return (
+            <div className="container">
+                <div className="row">
+                    <div className="col-xs-6">
+                        <b>Unidades seleccionadas: {this.contadorUnidades()}</b>
+                    </div>
+                    <div className="col-xs-6"></div>
+                </div>
+                <ListaSemestres
+                    semestres={this.state.semestres}
+                />
+                <div className="row">
+                    <div className="col-xs-12">
+                        <VistaDirector />
+                    </div>
+                </div>
+            </div>
+        );
+    }
 }
 
 export default App;
