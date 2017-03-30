@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import TablaMateriasPresentation from './TablaMateriasPresentation';
+import TablaMaterias from './TablaMaterias';
 
 class TablaMateriasContainer extends Component {
     constructor(props) {
@@ -12,24 +12,11 @@ class TablaMateriasContainer extends Component {
     }
 
     componentDidMount() {
-        let server = "http://localhost";
-        let port = "8000";
-        let RESTfulLink = "/reports/subjects";
-        fetch(server + ":" + port + RESTfulLink, {
-            method: "GET",
-        })
-            .then((resp) => {
-                console.log(resp);
-                return resp.json();
-            })
-            .then(function (data) {
-                console.log(data);
-            });
     }
 
     render() {
         return (
-            <div className="">fsdfdsa</div>
+            <TablaMaterias />
         );
     }
 }

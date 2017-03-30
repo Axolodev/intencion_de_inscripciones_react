@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import TablaMateriasContainer from "./TablaMateriasContainer"
 import TablaDepartamentosContainer from "./TablaDepartamentosContainer"
+import ContainerTablas from "./ContainerTablas";
 
 
 class VistaDirector extends Component {
@@ -19,17 +20,19 @@ class VistaDirector extends Component {
     }
 
     getTableToDraw() {
-        const DEPARTAMENTOS = 1;
+        const DEPARTAMENTOS = 1;/*
         if (this.state.indice_tabla_seleccionada === DEPARTAMENTOS) {
             return (
                 <TablaDepartamentosContainer />
             );
-        }
+        }*/
 
         // Vista default, por materias.
         return (
             <div className="">
-                <TablaMateriasContainer />
+                <ContainerTablas
+                    tabla={this.state.indice_tabla_seleccionada}
+                />
             </div>
         );
     }
@@ -43,7 +46,11 @@ class VistaDirector extends Component {
                         <option value="1">Por departamento</option>
                     </select>
                 </div>
-                { this.getTableToDraw() }
+
+                {this.state.indice_tabla_seleccionada}
+                <ContainerTablas
+                    indice_tabla_seleccionada={this.state.indice_tabla_seleccionada}
+                />
             </div>
         );
     }
