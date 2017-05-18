@@ -6,11 +6,9 @@ class ContainerTablas extends Component {
     constructor(props) {
         super(props);
 
-        console.log(props);
-
         this.state = {
             receivedData: false,
-            getIndiceTablaSeleccionada: props.indice_tabla_seleccionada,
+            getSelectedTableIndex: props.indice_tabla_seleccionada,
             data: [],
             tableWidth: 0,
             tableHeight: 0
@@ -20,49 +18,53 @@ class ContainerTablas extends Component {
     }
 
     updateTableDimensions() {
-        console.log(window.innerWidth * .85);
-        this.setState({tableWidth: parseInt(window.innerWidth * .85)});
+        this.setState({tableWidth: document.getElementById("sizer").offsetWidth});
     }
 
     componentDidMount() {
-        let server = "http://localhost";
-        let port = "8000";
         let RESTfulLink = "/reports/all/L00250399";
         let self = this;
-        fetch(server + ":" + port + RESTfulLink, {
+        fetch(RESTfulLink, {
             method: "GET",
         })
             .then((resp) => {
                 return resp.json();
             })
             .then(function (data) {
-                self.setState({receivedData: true});
-                self.setState({data});
-                console.log(data);
+                self.setState({data, receivedData: true});
             });
+
         this.updateTableDimensions();
         window.addEventListener("resize", this.updateTableDimensions);
     }
 
     render() {
-        let tableToRender = (
-            <TablaMaterias
-                data={this.state.data.infoMaterias}
-                width={this.state.tableWidth}
-            />
-        );
 
-        if (this.state.getIndiceTablaSeleccionada() == 1) {
+        let tableToRender = <div className="jumbotron text-center"><h2>Loading...</h2></div>;
+
+        if(this.state.receivedData) {
+            let selectedTableIndex = parseInt(this.state.getSelectedTableIndex());
             tableToRender = (
-                <TablaCarreras
-                    data={this.state.data.infoCarreras}
+                <TablaMaterias
+                    data={this.state.data.infoMaterias}
                     width={this.state.tableWidth}
                 />
             );
+            if (selectedTableIndex === 1) {
+                tableToRender = (
+                    <TablaCarreras
+                        data={this.state.data.infoCarreras}
+                        width={this.state.tableWidth}
+                    />
+                );
+            }
         }
 
         return (
-            <div className="container">{ tableToRender }</div>
+            <div id="sizer">
+                { tableToRender }
+                <br/>
+            </div>
         );
     }
 }

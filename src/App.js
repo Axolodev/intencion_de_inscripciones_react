@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import './App.css';
 
-import ListaSemestres from "./student/ListaSemestres";
-import VistaDirector from "./director/VistaDirector";
+//import ListaSemestres from "./student/ListaSemestres";
+//import VistaDirector from "./director/VistaDirector";
+
+import ContainerStudent from "./student/ContainerStudent";
 
 class App extends Component {
     constructor(props) {
@@ -22,19 +24,10 @@ class App extends Component {
 
     render() {
         return (
-            <div className="container">
-                <div className="row">
-                    <div className="col-xs-6">
-                        <b>Unidades seleccionadas: {this.contadorUnidades()}</b>
-                    </div>
-                    <div className="col-xs-6"></div>
-                </div>
-                <ListaSemestres
-                    semestres={this.state.semestres}
-                />
+            <div className="">
                 <div className="row">
                     <div className="col-xs-12">
-                        <VistaDirector />
+                        <ContainerStudent/>
                     </div>
                 </div>
             </div>

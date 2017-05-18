@@ -26,11 +26,11 @@ class VistaDirector extends Component {
                         <option value="1">Por carrera</option>
                     </select>
                 </div>
-
-                {this.state.indice_tabla_seleccionada}
-                <ContainerTablas
-                    indice_tabla_seleccionada={() => this.state.indice_tabla_seleccionada}
-                />
+                <div className="col-xs-12">
+                    <ContainerTablas
+                        indice_tabla_seleccionada={() => this.state.indice_tabla_seleccionada}
+                    />
+                </div>
             </div>
         );
     }
