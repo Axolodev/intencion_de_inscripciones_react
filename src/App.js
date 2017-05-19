@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 import './App.css';
 
 //import ListaSemestres from "./student/ListaSemestres";
-//import VistaDirector from "./director/VistaDirector";
+import VistaDirector from "./director/VistaDirector";
 
-import ContainerStudent from "./student/ContainerStudent";
+// import ContainerStudent from "./student/ContainerStudent";
 
 class App extends Component {
     constructor(props) {
@@ -27,7 +27,7 @@ class App extends Component {
             <div className="">
                 <div className="row">
                     <div className="col-xs-12">
-                        <ContainerStudent/>
+                        <VistaDirector/>
                     </div>
                 </div>
             </div>
