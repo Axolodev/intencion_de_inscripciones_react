@@ -177,6 +177,7 @@ class ContainerStudent extends Component {
                     key={key}
                     data={this.state.data.materias[key]}
                     name={key}
+                    index={index}
                 />);
             });
         }
